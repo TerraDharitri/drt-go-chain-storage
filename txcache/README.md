@@ -35,7 +35,7 @@ initiallyPaidFee =
     dataCost * gasPrice +
     executionCost * gasPrice * network.gasPriceModifier
 
-dataCost = network.minGasLimit + len(data) * network.gasPdrTataByte
+dataCost = network.minGasLimit + len(data) * network.gasPerDataByte
 
 executionCost = gasLimit - dataCost
 ```
@@ -45,7 +45,7 @@ Network parameters (as of November of 2024):
 ```
 gasPriceModifier = 0.01
 minGasLimit = 50_000
-gasPdrTataByte = 1_500
+gasPerDataByte = 1_500
 ```
 
 #### Examples

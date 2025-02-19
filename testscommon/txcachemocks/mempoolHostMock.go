@@ -11,7 +11,7 @@ import (
 type MempoolHostMock struct {
 	minGasLimit      uint64
 	minGasPrice      uint64
-	gasPdrTataByte   uint64
+	gasPerDataByte   uint64
 	gasPriceModifier float64
 
 	ComputeTxFeeCalled        func(tx data.TransactionWithFeeHandler) *big.Int
@@ -23,7 +23,7 @@ func NewMempoolHostMock() *MempoolHostMock {
 	return &MempoolHostMock{
 		minGasLimit:      50000,
 		minGasPrice:      1000000000,
-		gasPdrTataByte:   1500,
+		gasPerDataByte:   1500,
 		gasPriceModifier: 0.01,
 	}
 }
@@ -38,7 +38,7 @@ func (mock *MempoolHostMock) ComputeTxFee(tx data.TransactionWithFeeHandler) *bi
 	gasPriceForMovement := tx.GetGasPrice()
 	gasPriceForProcessing := uint64(float64(gasPriceForMovement) * mock.gasPriceModifier)
 
-	gasLimitForMovement := mock.minGasLimit + dataLength*mock.gasPdrTataByte
+	gasLimitForMovement := mock.minGasLimit + dataLength*mock.gasPerDataByte
 	if tx.GetGasLimit() < gasLimitForMovement {
 		panic("tx.GetGasLimit() < gasLimitForMovement")
 	}
