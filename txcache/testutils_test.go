@@ -1,7 +1,9 @@
 package txcache
 
 import (
+	cryptoRand "crypto/rand"
 	"encoding/binary"
+	"math"
 	"math/big"
 	"math/rand"
 	"sync"
@@ -16,11 +18,48 @@ const oneBillion = oneMilion * 1000
 const oneQuintillion = 1_000_000_000_000_000_000
 const estimatedSizeOfBoundedTxFields = uint64(128)
 const hashLength = 32
+const addressLength = 32
 
 var oneQuintillionBig = big.NewInt(oneQuintillion)
 
 // The GitHub Actions runners are (extremely) slow.
 const selectionLoopMaximumDuration = 30 * time.Second
+
+var randomHashes = newRandomData(math.MaxUint16, hashLength)
+var randomAddresses = newRandomData(math.MaxUint16, addressLength)
+
+type randomData struct {
+	randomBytes []byte
+	numItems    int
+	itemSize    int
+}
+
+func newRandomData(numItems int, itemSize int) *randomData {
+	randomBytes := make([]byte, numItems*itemSize)
+
+	_, err := cryptoRand.Read(randomBytes)
+	if err != nil {
+		panic(err)
+	}
+
+	return &randomData{
+		randomBytes: randomBytes,
+		numItems:    numItems,
+		itemSize:    itemSize,
+	}
+}
+
+func (data *randomData) getItem(index int) []byte {
+	start := index * data.itemSize
+	end := start + data.itemSize
+	return data.randomBytes[start:end]
+}
+
+func (data *randomData) getTailItem(index int) []byte {
+	start := (data.numItems - 1 - index) * data.itemSize
+	end := start + data.itemSize
+	return data.randomBytes[start:end]
+}
 
 func (cache *TxCache) areInternalMapsConsistent() bool {
 	internalMapByHash := cache.txByHash
@@ -192,6 +231,12 @@ func (wrappedTx *WrappedTransaction) withValue(value *big.Int) *WrappedTransacti
 	return wrappedTx
 }
 
+func (wrappedTx *WrappedTransaction) withRelayer(relayer []byte) *WrappedTransaction {
+	tx := wrappedTx.Tx.(*transaction.Transaction)
+	tx.RelayerAddr = relayer
+	return wrappedTx
+}
+
 func createFakeSenderAddress(senderTag int) []byte {
 	bytes := make([]byte, 32)
 	binary.LittleEndian.PutUint64(bytes, uint64(senderTag))
@@ -210,7 +255,7 @@ func createFakeTxHash(fakeSenderAddress []byte, nonce int) []byte {
 // waitTimeout waits for the waitgroup for the specified max timeout.
 // Returns true if waiting timed out.
 // Reference: https://stackoverflow.com/a/32843750/1475331
-func WaitTimeout(wg *sync.WaitGroup, timeout time.Duration) bool {
+func waitTimeout(wg *sync.WaitGroup, timeout time.Duration) bool {
 	c := make(chan struct{})
 	go func() {
 		defer close(c)
