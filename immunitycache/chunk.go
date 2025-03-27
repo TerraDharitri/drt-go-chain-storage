@@ -81,7 +81,7 @@ func (chunk *immunityChunk) AddItem(item *cacheItem) (has, added bool) {
 	}
 
 	// Discard duplicates
-	if chunk.itemOaistsNoLock(item) {
+	if chunk.itemExistsNoLock(item) {
 		return true, false
 	}
 
@@ -161,7 +161,7 @@ func (chunk *immunityChunk) monitorEvictionNoLock(numRemoved int, err error) {
 	}
 }
 
-func (chunk *immunityChunk) itemOaistsNoLock(item *cacheItem) bool {
+func (chunk *immunityChunk) itemExistsNoLock(item *cacheItem) bool {
 	_, exists := chunk.items[item.key]
 	return exists
 }

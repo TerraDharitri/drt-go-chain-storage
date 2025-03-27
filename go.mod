@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/TerraDharitri/concurrent-map v0.0.2
-	github.com/TerraDharitri/drt-go-chain-core v0.0.5
+	github.com/TerraDharitri/drt-go-chain-core v0.0.6
 	github.com/TerraDharitri/drt-go-chain-logger v0.0.3
 	github.com/hashicorp/golang-lru v0.6.0
 	github.com/stretchr/testify v1.7.2
