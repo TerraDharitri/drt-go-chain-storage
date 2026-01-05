@@ -45,6 +45,7 @@ func (wrappedTx *WrappedTransaction) decideFeePayer() []byte {
 	if ok && len(asRelayed.GetRelayerAddr()) > 0 {
 		return asRelayed.GetRelayerAddr()
 	}
+
 	return wrappedTx.Tx.GetSndAddr()
 }
 
