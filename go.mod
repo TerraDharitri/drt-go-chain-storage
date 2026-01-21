@@ -1,11 +1,11 @@
 module github.com/TerraDharitri/drt-go-chain-storage
 
-go 1.23.7
+go 1.23
 
 require (
 	github.com/TerraDharitri/concurrent-map v0.0.2
-	github.com/TerraDharitri/drt-go-chain-core v0.1.1
-	github.com/TerraDharitri/drt-go-chain-logger v0.1.1
+	github.com/TerraDharitri/drt-go-chain-core v1.0.1
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.0
 	github.com/hashicorp/golang-lru v0.6.0
 	github.com/stretchr/testify v1.7.2
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d

@@ -1,9 +1,9 @@
 github.com/TerraDharitri/concurrent-map v0.0.2 h1:1mbBoZ1CkZfx302+OPql/MnZ0FMNta/gZFhrcNWzH0E=
 github.com/TerraDharitri/concurrent-map v0.0.2/go.mod h1:VhJu3zflrGNfc4iXhu/ioiZqrV2FvKehWrSnXehTDFg=
-github.com/TerraDharitri/drt-go-chain-core v0.1.1 h1:ja9Zxvpwvs1wwZzjApzMbFP0hPmwF2ncTG2HpguzxEM=
-github.com/TerraDharitri/drt-go-chain-core v0.1.1/go.mod h1:30vTlzXbhDoqBSxrdcUm1mu4ZGEXEJW8v5XWKKgGpIE=
-github.com/TerraDharitri/drt-go-chain-logger v0.1.1 h1:bfnW4OKFV5teriKb7o7mKw7MBy4DvUO4WZv/YrCS5jo=
-github.com/TerraDharitri/drt-go-chain-logger v0.1.1/go.mod h1:KpZPvIlFe8u57madt+aaaxyg45yAhMEs4MLR+eSUH44=
+github.com/TerraDharitri/drt-go-chain-core v1.0.1 h1:k0B3DZNYJwE/NmibEQBVi/TxDm5Ij1Poo2HOv6HcMMM=
+github.com/TerraDharitri/drt-go-chain-core v1.0.1/go.mod h1:dppf7NEpCEr/YrKYrRCnyVLsehIVnXSWMU4cikdL2/Q=
+github.com/TerraDharitri/drt-go-chain-logger v1.0.0 h1:JU7F0+DLrdV6mNXemd5RzyQcsy/QKCIrhSkvmoeHA9Y=
+github.com/TerraDharitri/drt-go-chain-logger v1.0.0/go.mod h1:5I5eJbzcpPswHIWc1oZXLzlvE3YWJ2S8nzmKZ8CeMm0=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=
 github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
